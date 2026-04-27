@@ -67,4 +67,11 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 print(f"Train set shape: {X_train.shape}")
-print(f"Test set shape: {X_test.shape}")
+print(f"Test set shape: {y_test.shape}")
+
+# Step 7: Save Clean Data (Optional but Pro 🔥)
+print("\nSaving cleaned data to data/cleaned_data.csv...")
+df.to_csv("data/cleaned_data.csv", index=False)
+print("Data saved successfully!")
+
+print("\n--- Phase 2 Complete ---")
