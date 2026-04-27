@@ -32,3 +32,14 @@ print("Dropping customerID column...")
 df = df.drop("customerID", axis=1)
 
 print(f"Final columns: {df.columns.tolist()}")
+
+# Step 4: Handle Categorical Data
+print("\nChecking categorical columns...")
+cat_cols = df.select_dtypes(include=["object"]).columns
+print(f"Categorical columns: {cat_cols.tolist()}")
+
+print("Applying One-Hot Encoding...")
+df = pd.get_dummies(df, drop_first=True)
+
+print(f"New shape after encoding: {df.shape}")
+print(f"First 5 columns of encoded data: {df.columns[:5].tolist()}")
