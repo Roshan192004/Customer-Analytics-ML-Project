@@ -43,3 +43,17 @@ df = pd.get_dummies(df, drop_first=True)
 
 print(f"New shape after encoding: {df.shape}")
 print(f"First 5 columns of encoded data: {df.columns[:5].tolist()}")
+
+# Step 5: Feature Scaling
+from sklearn.preprocessing import StandardScaler
+
+print("\nApplying feature scaling...")
+scaler = StandardScaler()
+
+X = df.drop("Churn", axis=1)
+y = df["Churn"]
+
+# Keep track of column names as scaling returns a numpy array
+X_scaled = scaler.fit_transform(X)
+print("Scaling complete.")
+print(f"Shape of scaled features: {X_scaled.shape}")
