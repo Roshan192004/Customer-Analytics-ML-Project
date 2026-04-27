@@ -57,3 +57,14 @@ y = df["Churn"]
 X_scaled = scaler.fit_transform(X)
 print("Scaling complete.")
 print(f"Shape of scaled features: {X_scaled.shape}")
+
+# Step 6: Train-Test Split
+from sklearn.model_selection import train_test_split
+
+print("\nPerforming train-test split (80/20)...")
+X_train, X_test, y_train, y_test = train_test_split(
+    X_scaled, y, test_size=0.2, random_state=42
+)
+
+print(f"Train set shape: {X_train.shape}")
+print(f"Test set shape: {X_test.shape}")
