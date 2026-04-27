@@ -39,6 +39,7 @@ sns.histplot(df['TotalCharges'], bins=30, kde=True, ax=axes[2], color='lightgree
 axes[2].set_title('Distribution of Total Charges')
 plt.tight_layout()
 plt.savefig('visualizations/spending_distribution.png')
+plt.show()
 plt.close()
 
 # 5. Correlation Heatmap
@@ -55,6 +56,7 @@ sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidt
 plt.title('Correlation Heatmap')
 plt.tight_layout()
 plt.savefig('visualizations/correlation_heatmap.png')
+plt.show()
 plt.close()
 
 # 6. Outlier Detection (Box Plots)
@@ -68,6 +70,7 @@ sns.boxplot(y=df['TotalCharges'], ax=axes[2], color='lightgreen')
 axes[2].set_title('Boxplot of Total Charges')
 plt.tight_layout()
 plt.savefig('visualizations/outliers_boxplot.png')
+plt.show()
 plt.close()
 
 # 7. Churn vs Features
@@ -83,6 +86,7 @@ for i, feature in enumerate(categorical_features):
 
 plt.tight_layout()
 plt.savefig('visualizations/churn_vs_features.png')
+plt.show()
 plt.close()
 
 print("\nEDA completed. Visualizations saved to 'visualizations/' directory.")
