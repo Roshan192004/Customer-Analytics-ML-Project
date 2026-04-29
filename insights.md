@@ -3,11 +3,17 @@
 Based on the statistical analysis and visualizations generated during Phase 3, here are the key insights into customer behavior and churn patterns:
 
 ## 1. Summary Statistics & Spending
+
+![Spending Distribution](visualizations/spending_distribution.png)
+
 - **Tenure:** The average customer stays for about 32 months. However, the distribution is highly polarized. There is a massive spike of customers at `tenure = 1` month (new customers), and another spike at `tenure = 72` months (very loyal, long-term customers).
 - **Monthly Charges:** Customers pay an average of $64.80 per month. The distribution of monthly charges shows a large concentration of customers at the lower end (~$20/month, likely basic phone service only) and a wide spread between $70-$100/month (likely bundled internet and TV services).
 - **Outliers:** Based on the box plots generated, there are no significant statistical outliers in `tenure`, `MonthlyCharges`, or `TotalCharges`.
 
 ## 2. Correlation Analysis
+
+![Correlation Heatmap](visualizations/correlation_heatmap.png)
+
 - `TotalCharges` is highly positively correlated with `tenure` (as expected: longer tenure = more money spent over time).
 - `TotalCharges` also has a strong positive correlation with `MonthlyCharges`.
 - `tenure` has a negative correlation with `Churn` (longer tenure means lower likelihood to churn).
@@ -15,6 +21,9 @@ Based on the statistical analysis and visualizations generated during Phase 3, h
 
 ## 3. Churn vs Categorical Features (The "Why")
 The `churn_vs_features.png` plot reveals the most actionable insights:
+
+![Churn vs Features](visualizations/churn_vs_features.png)
+
 - **Contract Type (CRITICAL):** Customers on a **Month-to-month** contract have a drastically higher churn rate compared to those on One-year or Two-year contracts. Long-term contracts heavily lock in loyalty.
 - **Internet Service:** Customers using **Fiber optic** internet churn at a noticeably higher rate than those using DSL. This could point to issues with fiber optic pricing, reliability, or competitor offers.
 - **Tech Support:** Customers **without Tech Support** are significantly more likely to churn. Proactive support seems to be a strong retention tool.
