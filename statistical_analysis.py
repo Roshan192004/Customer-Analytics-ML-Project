@@ -69,7 +69,10 @@ def run_statistical_analysis():
         f.write(f"- **P-value:** {p_tenure_tc:.4e}\n")
         f.write("- **Conclusion:** Extremely strong, statistically significant positive correlation.\n\n")
 
-    print("Statistical analysis completed. Results saved to statistical_conclusions.md")
+    print("Statistical analysis completed. Results saved to statistical_conclusions.md\n")
+    print("--- Output ---\n")
+    with open('statistical_conclusions.md', 'r') as f:
+        print(f.read())
 
 if __name__ == '__main__':
     run_statistical_analysis()
