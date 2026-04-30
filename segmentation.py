@@ -57,5 +57,63 @@ def run_segmentation():
     print(f"Elbow curve saved to {elbow_path}.")
     plt.close()
 
+    # ---------------------------------------------------------
+    # 6.2 Apply K-Means (Assuming k=3 based on elbow curve)
+    # ---------------------------------------------------------
+    optimal_k = 3
+    print(f"\nApplying K-Means with k={optimal_k}...")
+    kmeans_optimal = KMeans(n_clusters=optimal_k, init='k-means++', random_state=42, n_init=10)
+    cluster_labels = kmeans_optimal.fit_predict(X_scaled)
+    
+    # Add clusters back to the original subset for interpretation
+    df_segmented = X_seg.copy()
+    df_segmented['Cluster'] = cluster_labels
+    
+    print("\nCluster Distribution:")
+    print(df_segmented['Cluster'].value_counts().sort_index())
+    
+    print("\nCluster Profiles (Mean values):")
+    cluster_profiles = df_segmented.groupby('Cluster').mean()
+    print(cluster_profiles)
+
+    # ---------------------------------------------------------
+    # 6.3 Visualize Clusters (3D Scatter)
+    # ---------------------------------------------------------
+    print("\nGenerating 3D Cluster Visualization...")
+    fig = plt.figure(figsize=(10, 8))
+    ax = fig.add_subplot(111, projection='3d')
+    
+    # Scatter plot
+    scatter = ax.scatter(
+        df_segmented['tenure'], 
+        df_segmented['MonthlyCharges'], 
+        df_segmented['TotalCharges'], 
+        c=df_segmented['Cluster'], 
+        cmap='viridis', 
+        alpha=0.6,
+        s=20
+    )
+    
+    ax.set_title(f'Customer Segments (k={optimal_k})')
+    ax.set_xlabel('Tenure (Months)')
+    ax.set_ylabel('Monthly Charges ($)')
+    ax.set_zlabel('Total Charges ($)')
+    
+    # Legend
+    legend1 = ax.legend(*scatter.legend_elements(), title="Clusters")
+    ax.add_artist(legend1)
+    
+    # Save the 3D plot
+    clusters_path = 'visualizations/cluster_segments_3d.png'
+    plt.savefig(clusters_path)
+    print(f"Cluster visualization saved to {clusters_path}.")
+    plt.close()
+    
+    # Optional: save the segmented data
+    df_segmented.to_csv('data/segmented_customers.csv', index=False)
+    print("\nSegmented customer data saved to data/segmented_customers.csv.")
+    
+    print("\n--- Phase 6 Complete ---")
+
 if __name__ == "__main__":
     run_segmentation()
