@@ -8,6 +8,11 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, confusion_matrix
 
+# Regression imports
+from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_squared_error, r2_score
+
 def run_models():
     print("="*50)
     print("PHASE 5: MACHINE LEARNING MODELS")
@@ -65,6 +70,49 @@ def run_models():
     print(f"Recall:    {recall_score(y_test_c, rf_class_preds):.4f}")
     print("Confusion Matrix:")
     print(confusion_matrix(y_test_c, rf_class_preds))
+
+    # ---------------------------------------------------------
+    # 5.2 Regression (Spending)
+    # ---------------------------------------------------------
+    print("\n" + "*"*40)
+    print("5.2 Regression (Predicting TotalCharges)")
+    print("*"*40)
+
+    # We use TotalCharges as the spending target.
+    # We include Churn as a feature, as we are analyzing overall customer spending behavior.
+    X_reg = df.drop('TotalCharges', axis=1)
+    y_reg = df['TotalCharges']
+
+    X_train_r, X_test_r, y_train_r, y_test_r = train_test_split(
+        X_reg, y_reg, test_size=0.2, random_state=42
+    )
+
+    # Scale data
+    scaler_r = StandardScaler()
+    X_train_r_scaled = scaler_r.fit_transform(X_train_r)
+    X_test_r_scaled = scaler_r.transform(X_test_r)
+
+    # --- Linear Regression ---
+    print("\n--- Linear Regression ---")
+    lin_reg_model = LinearRegression()
+    lin_reg_model.fit(X_train_r_scaled, y_train_r)
+    lin_reg_preds = lin_reg_model.predict(X_test_r_scaled)
+
+    lin_rmse = np.sqrt(mean_squared_error(y_test_r, lin_reg_preds))
+    lin_r2 = r2_score(y_test_r, lin_reg_preds)
+    print(f"RMSE:     {lin_rmse:.2f}")
+    print(f"R² Score: {lin_r2:.4f}")
+
+    # --- Random Forest Regressor ---
+    print("\n--- Random Forest Regressor ---")
+    rf_reg_model = RandomForestRegressor(random_state=42, n_estimators=100)
+    rf_reg_model.fit(X_train_r_scaled, y_train_r)
+    rf_reg_preds = rf_reg_model.predict(X_test_r_scaled)
+
+    rf_rmse = np.sqrt(mean_squared_error(y_test_r, rf_reg_preds))
+    rf_r2 = r2_score(y_test_r, rf_reg_preds)
+    print(f"RMSE:     {rf_rmse:.2f}")
+    print(f"R² Score: {rf_r2:.4f}")
 
 if __name__ == "__main__":
     run_models()
