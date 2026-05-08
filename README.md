@@ -13,6 +13,7 @@ This project focuses on solving three core business problems using the Telco Cus
 - **Phase 5**: Model Building & Evaluation (Completed ✅)
 - **Phase 6**: Customer Segmentation (Completed ✅)
 - **Phase 7**: AI Recommendation System (Completed ✅)
+- **Phase 8**: Deep Learning (Neural Networks) (Completed ✅)
 
 ## Dataset
 The dataset used is the [Telco Customer Churn dataset](https://raw.githubusercontent.com/treselle-systems/customer_churn_analysis/master/WA_Fn-UseC_-Telco-Customer-Churn.csv).
