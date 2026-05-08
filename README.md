@@ -7,10 +7,12 @@ This project focuses on solving three core business problems using the Telco Cus
 
 ## Project Phases
 - **Phase 1**: Problem Understanding & Dataset Setup (Completed ✅)
-- **Phase 2**: Data Cleaning & Preprocessing (Next 🔜)
-- **Phase 3**: Exploratory Data Analysis (EDA)
-- **Phase 4**: Feature Engineering
-- **Phase 5**: Model Building & Evaluation
+- **Phase 2**: Data Cleaning & Preprocessing (Completed ✅)
+- **Phase 3**: Exploratory Data Analysis (EDA) (Completed ✅)
+- **Phase 4**: Feature Engineering (Completed ✅)
+- **Phase 5**: Model Building & Evaluation (Completed ✅)
+- **Phase 6**: Customer Segmentation (Completed ✅)
+- **Phase 7**: AI Recommendation System (Completed ✅)
 
 ## Dataset
 The dataset used is the [Telco Customer Churn dataset](https://raw.githubusercontent.com/treselle-systems/customer_churn_analysis/master/WA_Fn-UseC_-Telco-Customer-Churn.csv).
